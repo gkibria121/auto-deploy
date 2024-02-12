@@ -19,4 +19,4 @@ jobs:
         # Save the SSH private key to a file
         echo "${{ env.SSH_PRIVATE_KEY }}" > ssh_key
         # Use OpenSSH to execute commands over SSH
-        ssh -i ssh_key -l ${{ secrets.USERNAME }} -p 22 ${{ secrets.HOST }} "cd  C:\Users\prospectbddev\Desktop\auto-deploy && git pull origin main"
+        ssh -i ssh_key prospectbddev@160.202.144.182  "cd  C:\Users\prospectbddev\Desktop\auto-deploy && git pull origin main"
