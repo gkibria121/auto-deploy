@@ -1,7 +1,10 @@
 name: Deploy
 
 # Controls when the action will run. 
-on: push
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -12,15 +15,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:       
-    - name: Deploy using ssh
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd C:\Users\prospectbddev\Desktop\auto-deploy
-          git pull origin
-          
-
+    - name: Deploy using SSH
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        # Save the SSH private key to a file
+        echo "${{ env.SSH_PRIVATE_KEY }}" > ssh_key
+        # Use plink to execute commands over SSH
+        plink -ssh -i ssh_key -l ${{ secrets.USERNAME }} -P 22 ${{ secrets.HOST }} "cd /var/www/youtube.com/ && git pull origin main && git status && npm install --only=prod"
