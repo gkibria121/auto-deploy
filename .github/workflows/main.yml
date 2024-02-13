@@ -8,15 +8,11 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:       
     - name: Deploy using SSH
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: |
-        # Save the SSH private key to a file
-        echo "${{ env.SSH_PRIVATE_KEY }}" > ssh_key
-        # Use OpenSSH to execute commands over SSH
-        ssh -i ssh_key prospectbddev@160.202.144.182  "cd  C:\Users\prospectbddev\Desktop\auto-deploy && git pull origin main"
+    - uses: actions/checkout@v2
+    - run: cd C:\Users\prospectbddev\Desktop\auto-deploy
+    - run: git pull origin
