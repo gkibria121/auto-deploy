@@ -1,21 +1,32 @@
-name: Deploy
+name: Windows Deployment
 
-# Controls when the action will run. 
-on: push # Adjust branch as needed
+on: push
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
     runs-on: self-hosted
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:       
-      - name: Checkout Repository
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install npm dependencies and run tests
+      - name: Install dependencies (Optional)
         run: |
-          cd C:\Users\prospectbddev\Desktop\auto-deploy
-          git pull origin
+          # Replace with your specific dependency installation commands
+          # e.g., choco install my-tool, npm install
+
+      - name: Build code (Optional)
+        run: |
+          # Replace with your build commands
+          # e.g., msbuild /t:Release
+
+      - name: Deploy to target (Replace with your deployment steps)
+        run: |
+          # Replace with your specific deployment commands
+          # e.g., copy artifacts to target server
+          # scp artifacts user@server:~/path/to/destination
+
+      - name: Post-deployment tasks (Optional)
+        run: |
+          # Add any additional tasks after deployment
+          # e.g., restart service, send notification
+
