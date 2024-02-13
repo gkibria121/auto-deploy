@@ -15,6 +15,6 @@ jobs:
     - name: Deploy using ssh
       uses: actions/checkout@v2
       with:
-        script: |
+        run: |
           cd C:\Users\prospectbddev\Desktop\auto-deploy
           git pull origin
