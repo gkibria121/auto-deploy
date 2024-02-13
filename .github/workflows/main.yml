@@ -12,7 +12,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:       
-    - name: Deploy using SSH
-    - uses: actions/checkout@v2
-    - run: cd C:\Users\prospectbddev\Desktop\auto-deploy
-    - run: git pull origin
+    - name: Deploy using ssh
+      uses: actions/checkout@v2
+      with:
+        script: |
+          cd C:\Users\prospectbddev\Desktop\auto-deploy
+          git pull origin
