@@ -9,5 +9,5 @@ jobs:
       - name: Install dependencies (Optional)
         run: |
           cd C:\Users\prospectbddev\Desktop\auto-deploy
-          git pull origin
+          git pull origin 
 
