@@ -1,0 +1,13 @@
+name: Windows Deployment
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Install dependencies (Optional)
+        run: |
+          cd C:\Users\prospectbddev\Desktop\auto-deploy
+          git pull origin
+
