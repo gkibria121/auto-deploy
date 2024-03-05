@@ -9,4 +9,5 @@ jobs:
       - name: Install dependencies (Optional)
         run: |
           git pull origin 
+          echo "${pwd}"
 
